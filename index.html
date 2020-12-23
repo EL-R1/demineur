@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Démineur 💣 !</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div class="demineur" id="start">
+    <div v-if="start === false">
+        <h1 class="titre">Démineur</h1>
+        <h2>
+            hauteur :
+            <input v-model="width" type="number">
+        </h2>
+        <h2>
+            largeur :
+            <input v-model="height" type="number">
+        </h2>
+
+        <span class="button" v-on:click="start_game(width, height)">&nbsp; start &nbsp;</span>
+    </div>
+    <div v-else>
+        <h1 class="titre">There is {{nbrMine}} impostor among us</h1>
+        <div class="row" v-for="(row, x) in grid">
+            <div v-for="(cells, y) in row">
+                <div v-on:click.left="clicks(x,y, $event)" v-on:click.right="flags(x,y, $event);">
+                    <div v-bind:class='{"cells visible" : cells.isVisible === true, "cells hidden" : cells.isVisible === false}'>{{cells}}</div>
+                </div>
+            </div>
+        </div>
+        <div v-if="condition_over() === false">
+            <div v-if="Win === true">
+                <h2>Bravo vous avez gagné</h2>
+            </div>
+            <div v-if="Defait === true">
+                <h2>Dommage vous avez perdu</h2>
+            </div>
+            <h3>Voulez vous rejouer ?</h3>
+            <div class="The_end">
+                <span class="button" onclick="window.location.reload()">&nbsp; Oui &nbsp;</span>
+                <span class="button" onclick="window.location='https://en.wikipedia.org/wiki/Minesweeper_(video_game)'">&nbsp; Non &nbsp;</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
