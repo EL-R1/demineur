@@ -1,0 +1,16 @@
+{
+  "name": "corrige-demineur",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "static-server -p 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julien Caré",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "static-server": "^2.0.6"
+  }
+}
